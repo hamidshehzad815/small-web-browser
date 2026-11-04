@@ -1,0 +1,28 @@
+{
+  "name": "small-web",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev:shared": "npm run dev -w @small-web/shared",
+    "dev:api": "npm run build -w @small-web/shared && npm run start:dev -w @small-web/api",
+    "dev:web": "npm run build -w @small-web/shared && npm run dev -w @small-web/web",
+    "build": "npm run build -w @small-web/shared && npm run build -w @small-web/api && npm run build -w @small-web/web",
+    "seed": "npm run build -w @small-web/shared && npm run seed -w @small-web/api",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run build -w @small-web/shared && npm run typecheck --workspaces --if-present",
+    "format": "prettier --write .",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.3"
+  }
+}
