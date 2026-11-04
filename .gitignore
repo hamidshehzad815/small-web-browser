@@ -1,0 +1,23 @@
+node_modules/
+dist/
+build/
+.next/
+out/
+coverage/
+*.log
+*.tsbuildinfo
+
+.env
+.env.*
+!.env.example
+
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# PRIVATE — AI/vibe-coding and planning files. Never commit or push these.
+CLAUDE.md
+AGENTS.md
+.claude/
+docs/
