@@ -16,6 +16,21 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          // Nobody gets to frame the browser. Deliberately no `script-src`: a srcdoc iframe inherits
+          // its parent's CSP, so a strict one here would also block the viewer's own nonce'd bridge.
+          // The pages' policy lives in the document we build for the sandbox (lib/viewer-doc.ts).
+          { key: 'Content-Security-Policy', value: "frame-ancestors 'none'" },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Referrer-Policy', value: 'no-referrer' },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
