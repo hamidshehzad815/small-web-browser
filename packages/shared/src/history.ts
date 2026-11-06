@@ -3,7 +3,8 @@ import { parseAddress, type Address } from './address';
 // The back/forward stack for one person. Pure and framework-free: the UI feeds it actions and renders
 // the state. Visits (the history log) are a side effect the UI records when `arrival` changes.
 
-export type Via = 'typed' | 'link' | 'search' | 'history' | 'back' | 'forward';
+export const VIA_VALUES = ['typed', 'link', 'search', 'history', 'back', 'forward'] as const;
+export type Via = (typeof VIA_VALUES)[number];
 export type NavigateVia = Exclude<Via, 'back' | 'forward'>;
 
 export type PageEntry =
